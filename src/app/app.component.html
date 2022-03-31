@@ -1,17 +1,58 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="utf-8">
+<title>Gestion des Produits</title>
+</head>
+<body>
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+            <h1 
+            [ngStyle]="{'font-size' : colorH1 ?  100+'px' : 36+'px' }" (click)="displayColor()">Maroc</h1>
             <ol>
-             <li>Create to new Components (manually or with CLI): WarningAlert or SuccessAlert</li>
-             <li>Output them beneath each otherin the AppConponent</li>
-             <li>Output a warning or success message in the Components</li>
-             <li>Style the Components appropriately(maybe some red/ green text?)</li>
+                <li>Create to new Components (manually or with CLI): WarningAlert or SuccessAlert</li>
+                <li>Output them beneath each otherin the AppConponent</li>
+                <li [ngStyle]="{'font-size' : colorLi ?  40+'px' : 14+'px' }" (click)="getSizes()">Output a warning or success message in the Components</li>
+                <li>Style the Components appropriately(maybe some red/ green text?)</li>
             </ol>
-            <p>Use a external or internal templates and styles!</p>
-            <p>Feel free to create more components, nest them into other or play around with different types or selectors!</p>
+            <button type="text" class="btn btn-primary" (click)="displayText()">Afficher texte</button>
+            <p *ngIf="useStyle" [ngClass]="{'color-text' : colorText }"(dblclick)="displayColorText()" >Use a external or internal templates and styles!</p>
+            <p [ngClass]="{'color-text' : colorText }"(dblclick)="displayColorText()">Feel free to create more components, nest them into other or play around with different types or
+                selectors!</p>
+            <p *ngFor="let soccer of soccers; let i = index"
+            [ngClass]="{'style-color' : i === colorId }"
+            (dblclick)="colorId = i">Je vous présente le joueur {{ soccer.name }} agé de {{ soccer.age }} avec un total de buts marqués de {{ soccer.goals }}</p>
             <hr>
-         <app-warning-alert></app-warning-alert>
+            <!--<button class="btn btn-primary" (click)="showSecret = !showSecret">Display Detils</button>-->
+            <button class="btn btn-primary" (click)="onToogleDetails()">Display Details</button>
+            <p *ngIf="showSecret">Secret Password = tuna</p>
+            <div *ngFor="let logItem of log; let i = index" 
+            [ngStyle]="{backgroundColor: i >= 4 ? 'blue' :'transparent'}"
+            [ngClass]="{'white-text' : i >= 4}">
+            {{logItem }}</div>
+            <!--<app-warning-alert></app-warning-alert>
          <app-success-alert></app-success-alert>
+         <app-servers></app-servers>
+         <label>Username</label>
+         <input type="text" class="form-control" [(ngModel)]="username">
+         <p>{{ username }}</p>
+         <button
+         class="btn btn-primary"
+         [disabled]="username === ''"
+         (click)="username = ''"> Reset User </button>-->
+        <app-livres></app-livres>
+         <app-add-livre></app-add-livre>
+         <app-update-livre></app-update-livre>
+        
+        
         </div>
     </div>
 </div>
+</body>
+</html>
+
+<router-outlet></router-outlet>

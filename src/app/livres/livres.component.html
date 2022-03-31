@@ -1,0 +1,22 @@
+<div>
+    <div>
+        <div>
+            <table>
+                <thead>
+                <tr> <th>userId</th><th>Id</th> <th>Title</th> <th>Etat</th> </tr>
+                </thead>
+                <tbody *ngFor="let livre of livres">
+                    <tr >
+                        <td>{{livre.userId}}</td>
+                        <td>{{livre.id}}</td>
+                        <td>{{livre.title}}</td>
+                        <td>{{livre.completed}}</td>
+                        <td><a class="btn btn-danger" (click)="deleteLivre(livre)">Delete</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/updateLivre',livre.id]">Update</a></td>
+                     
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
